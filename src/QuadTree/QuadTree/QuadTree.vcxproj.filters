@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="mapview.cpp" />
+    <ClCompile Include="observerview.cpp" />
+    <ClCompile Include="quadtile.cpp" />
     <ClCompile Include="terrainquadtree.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="mapview.h" />
+    <ClInclude Include="observerview.h" />
+    <ClInclude Include="quadtile.h" />
+    <ClInclude Include="quadtree.h" />
+    <ClInclude Include="terrainquadtree.h" />
+    <ClInclude Include="main.h" />
   </ItemGroup>
 </Project>
