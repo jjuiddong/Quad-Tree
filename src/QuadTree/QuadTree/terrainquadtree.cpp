@@ -272,37 +272,6 @@ void cTerrainQuadTree::RenderQuad(graphic::cRenderer &renderer
 			if (isShow)
 				++m_showQuadCount;
 
-			Plane ground(Vector3(0, 1, 0), 0);
-			Vector3 pos = ground.Pick(ray.orig, ray.dir);
-			if (sQuadTreeNode<sQuadData> *node = m_qtree.GetNode(sRectf::Rect(pos.x, pos.z, 0, 0)))
-			{
-				const sRectf rect = m_qtree.GetNodeRect(node);
-				ars.push_back({ rect, cColor::WHITE });
-
-				if (sQuadTreeNode<sQuadData> *north = m_qtree.GetNorthNeighbor(node))
-				{
-					const sRectf r = m_qtree.GetNodeRect(north);
-					ars.push_back({ r, cColor::RED });
-				}
-
-				if (sQuadTreeNode<sQuadData> *east = m_qtree.GetEastNeighbor(node))
-				{
-					const sRectf r = m_qtree.GetNodeRect(east);
-					ars.push_back({ r, cColor::GREEN });
-				}
-
-				if (sQuadTreeNode<sQuadData> *south = m_qtree.GetSouthNeighbor(node))
-				{
-					const sRectf r = m_qtree.GetNodeRect(south);
-					ars.push_back({ r, cColor::BLUE });
-				}
-
-				if (sQuadTreeNode<sQuadData> *west = m_qtree.GetWestNeighbor(node))
-				{
-					const sRectf r = m_qtree.GetNodeRect(west);
-					ars.push_back({ r, cColor::YELLOW });
-				}
-			}
 		}
 		else
 		{
@@ -320,6 +289,38 @@ void cTerrainQuadTree::RenderQuad(graphic::cRenderer &renderer
 	}
 
 	// Render north, south, west, east quad node
+	Plane ground(Vector3(0, 1, 0), 0);
+	Vector3 pos = ground.Pick(ray.orig, ray.dir);
+	if (sQuadTreeNode<sQuadData> *node = m_qtree.GetNode(sRectf::Rect(pos.x, pos.z, 0, 0)))
+	{
+		const sRectf rect = m_qtree.GetNodeRect(node);
+		ars.push_back({ rect, cColor::WHITE });
+
+		if (sQuadTreeNode<sQuadData> *north = m_qtree.GetNorthNeighbor(node))
+		{
+			const sRectf r = m_qtree.GetNodeRect(north);
+			ars.push_back({ r, cColor::RED });
+		}
+
+		if (sQuadTreeNode<sQuadData> *east = m_qtree.GetEastNeighbor(node))
+		{
+			const sRectf r = m_qtree.GetNodeRect(east);
+			ars.push_back({ r, cColor::GREEN });
+		}
+
+		if (sQuadTreeNode<sQuadData> *south = m_qtree.GetSouthNeighbor(node))
+		{
+			const sRectf r = m_qtree.GetNodeRect(south);
+			ars.push_back({ r, cColor::BLUE });
+		}
+
+		if (sQuadTreeNode<sQuadData> *west = m_qtree.GetWestNeighbor(node))
+		{
+			const sRectf r = m_qtree.GetNodeRect(west);
+			ars.push_back({ r, cColor::YELLOW });
+		}
+	}
+
 	for (auto &data : ars)
 	{
 		const sRectf &r = data.first;
